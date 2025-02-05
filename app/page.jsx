@@ -1,17 +1,22 @@
+import Filter from "@/components/filter/Filter";
 import Link from "next/link";
 
-const getProducts = async () => {
-  let res = await fetch(`https://dummyjson.com/products`, { method: 'GET' });
+const getProducts = async (limit = 10) => {
+  let res = await fetch(`https://dummyjson.com/products/?limit=${limit}`, { method: 'GET' });
   res = await res.json();
   return res;
 };
 
-export default async function Home() {
-  const products = await getProducts();
+export default async function Home({searchParams}) {
+  const query = await searchParams
+  console.log(query);
+  
+  const products = await getProducts(query?.limit);
 
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-4xl font-extrabold text-center my-8 text-gray-900">Our Products</h1>
+      <Filter />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {
           products?.products?.map(product => (
