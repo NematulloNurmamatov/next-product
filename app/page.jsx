@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 
 const getProducts = async () => {
@@ -18,7 +18,7 @@ export default async function Home() {
           products?.products?.map(product => (
             <Link href={`/${product.id}`}>
               <div
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4"
+                className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4"
                 key={product.id}
               >
                 <div className="relative w-full min-h-48 mb-4">
